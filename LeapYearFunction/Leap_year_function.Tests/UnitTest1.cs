@@ -59,7 +59,7 @@ namespace Leap_year_function.Tests
         }
 
         [Fact]
-        public void Error_handling_test(){
+        public void ArgumentException_handling_test(){
             //Arrange
             var writer = new StringWriter();
             Console.SetOut(writer);
@@ -73,6 +73,23 @@ namespace Leap_year_function.Tests
             //Assert
             var output = writer.GetStringBuilder().ToString().Trim();
             Assert.Equal("This only applies to years from 1582", output);
+        }
+
+        [Fact]
+        public void FormatException_handling_test(){
+            //Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            var input = new StringReader("Does Rasmus give private lectures?");
+            Console.SetIn(input);
+
+            //Act
+            Program.Main(new string[0]);
+
+            //Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("That's not a valid year", output);
         }
     }
 }

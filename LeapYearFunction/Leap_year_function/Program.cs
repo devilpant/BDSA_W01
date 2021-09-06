@@ -6,18 +6,25 @@ namespace Leap_year_function
     {
         public static void Main(string[] args)
         { 
-            int year = Int32.Parse(Console.ReadLine());
             try
             {
-                if(IsLeapYear(year)){
-                    Console.WriteLine("yay");
-                } else {
-                    Console.WriteLine("nay");
+                 int year = Int32.Parse(Console.ReadLine());
+                try
+                {
+                    if(IsLeapYear(year)){
+                        Console.WriteLine("yay");
+                    } else {
+                        Console.WriteLine("nay");
+                    }
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
-            catch (ArgumentException e)
+            catch (FormatException)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("That's not a valid year");
             }
         }
         
