@@ -6,7 +6,12 @@ namespace Leap_year_function
     {
         static void Main(string[] args)
         {
-            
+            int year = Console.ReadLine();
+            if(year.IsLeapYear){
+                Console.WriteLine("yay");
+            } else {
+                Console.WriteLine("nay");
+            }
         }
         
         public static bool IsLeapYear(int year){
