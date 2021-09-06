@@ -1,12 +1,13 @@
 using System;
 using Xunit;
+using System.IO;
 
 namespace Leap_year_function.Tests
 {
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void IsLeapYear_test()
         {
             //Arrange
             var notleapyear1 = Program.IsLeapYear(1700);
@@ -23,6 +24,55 @@ namespace Leap_year_function.Tests
             Assert.True(actualleapyear1);
             Assert.True(actualleapyear2);
         
+        }
+        [Fact]
+        public void console_test_yay(){
+            //Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            var input = new StringReader("1600");
+            Console.SetIn(input);
+
+            //Act
+            Program.Main(new string[0]);
+
+            //Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("yay", output);
+        }
+        [Fact]
+        public void console_test_nay(){
+            //Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            var input = new StringReader("1800");
+            Console.SetIn(input);
+
+            //Act
+            Program.Main(new string[0]);
+
+            //Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("nay", output);
+        }
+
+        [Fact]
+        public void Error_handling_test(){
+            //Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            var input = new StringReader("1500");
+            Console.SetIn(input);
+
+            //Act
+            Program.Main(new string[0]);
+
+            //Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("This only applies to years from 1582", output);
         }
     }
 }
